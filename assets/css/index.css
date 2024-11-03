@@ -1,0 +1,16 @@
+canvas {
+    background-color: #f0f0f0;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #333;
+  }
+  #startButton, #restartButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  #restartButton {
+    display: none; /* El botón de reinicio solo aparece al perder el juego */
+  }
