@@ -13,10 +13,10 @@ class Platform {
     this.isFake = false;
 
     this.img1 = new Image();
-    this.img1.src = "/assets/images/suelo-verde1.jpg";
+    this.img1.src = "assets/images/suelo-verde1.jpg";
 
     this.img2 = new Image();
-    this.img2.src = "/assets/images/suelo-lava.JPG";
+    this.img2.src = "assets/images/suelo-lava.JPG";
   }
 
   draw() {

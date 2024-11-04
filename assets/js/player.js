@@ -21,10 +21,10 @@ class Player {
     this.isFallingThrough = false;
 
     this.img = new Image();
-    this.img.src = "/assets/images/monigote.PNG";
+    this.img.src = "assets/images/monigote.PNG";
 
     this.img2 = new Image();
-    this.img2.src = "/assets/images/humo.JPG";
+    this.img2.src = "assets/images/humo.JPG";
   }
 
   move() {

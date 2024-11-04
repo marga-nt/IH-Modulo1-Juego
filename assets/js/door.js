@@ -11,10 +11,10 @@ class Door {
     //this.y = 300;
 
     this.img1 = new Image();
-    this.img1.src = "/assets/images/puerta-cerrada.JPG";
+    this.img1.src = "assets/images/puerta-cerrada.JPG";
 
     this.img2 = new Image();
-    this.img2.src = "/assets/images/puerta-abierta.jpg";
+    this.img2.src = "assets/images/puerta-abierta.jpg";
   }
 
   draw() {
