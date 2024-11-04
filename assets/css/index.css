@@ -1,16 +1,66 @@
-canvas {
-    background-color: #f0f0f0;
-    display: block;
-    margin: 0 auto;
-    border: 2px solid #333;
-  }
-  #startButton, #restartButton {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  #restartButton {
-    display: none; /* El botón de reinicio solo aparece al perder el juego */
-  }
+/* Reset de márgenes y padding para consistencia */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos de body y html */
+body, html {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fffab0;
+  font-family: sans-serif;
+}
+
+
+
+/* Estilos del H1 */
+#titulo {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 3em; /* Tamaño grande */
+  color: #00008b; /* Azul oscuro */
+  text-shadow: 5px 5px 8px #008000; /* Sombra verde */
+  text-align: center;
+  margin-bottom: 5px; /* Menor espacio debajo del H1 para acercar frasecilla */
+}
+
+#frasecilla {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  /*font-size: 3em; /* Tamaño grande */
+  color: #00008b; /* Azul oscuro */
+  text-shadow: 3px 3px 5px #008000; /* Sombra verde */
+  text-align: center;
+  font-style: italic; /* Texto en cursiva */
+  margin-bottom: 20px; /* Espacio debajo del H1 */
+}
+
+/* Estilo del canvas */
+#canvas {
+  border: 2px solid #000; /* Borde opcional para ver los límites del canvas */
+  background-color: #ffffff;
+  margin-bottom: 20px; /* Espacio debajo del canvas */
+  width: 500px;
+  height: 400px;
+  display: block;
+}
+
+/* Estilo del botón */
+#startButton {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #4CAF50; /* Verde */
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover del botón */
+#startButton:hover {
+  background-color: #45a049; /* Verde más oscuro */
+}
