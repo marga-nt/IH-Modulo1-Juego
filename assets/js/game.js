@@ -30,6 +30,11 @@ class Game {
     this.interval = null;
     this.started = false;
     this.isGameOver = false;
+    this.score = [];
+
+    this.getScore();
+
+    this.fontFamily = "Comic Sans MS";
 
     this.setListeners();
   }
@@ -111,7 +116,7 @@ class Game {
           this.platforms[i].draw2(); // cambia la plataforma fake por lava
           this.platforms[0].draw2(); // cambia el suelo por lava
 
-          this.player.draw2(); // cambia al jugador por humo
+          this.player.draw2(this.platforms[i]); // cambia al jugador por humo
           this.player.stare(); //se queda quieto el jugador
 
           this.lives = this.lives - 1;
@@ -150,13 +155,10 @@ class Game {
     this.clear();
 
     // Mensaje "Next Level"
-    this.ctx.font = "30px Arial";
-    this.ctx.fillStyle = "black";
-    this.ctx.fillText(
-      "Next Level",
-      this.ctx.canvas.width / 2 - 70,
-      this.ctx.canvas.height / 2
-    );
+    this.ctx.font = "Bold 40px Comic Sans MS";
+    this.ctx.fillStyle = "darkblue";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("Next Level", this.ctx.canvas.width / 2, 100);
 
     // Espera 1.5 segundos para reiniciar el nivel
     setTimeout(() => {
@@ -192,13 +194,10 @@ class Game {
     this.clear();
 
     // Mensaje de restart
-    this.ctx.font = "30px Arial";
-    this.ctx.fillStyle = "black";
-    this.ctx.fillText(
-      "Restart Level",
-      this.ctx.canvas.width / 2 - 70,
-      this.ctx.canvas.height / 2
-    );
+    this.ctx.font = "Bold 40px Comic Sans MS";
+    this.ctx.fillStyle = "darkblue";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("Restart Level", this.ctx.canvas.width / 2, 100);
 
     this.lostLive = false;
     console.log(this.lostLive);
@@ -237,17 +236,35 @@ class Game {
     this.clear(); // Limpia el canvas
     this.pause(); // Detiene el juego
 
+    //guarda la puntuación si procede
+    this.addScore();
+
     // Mostrar mensaje de "Game Over"
-    this.ctx.font = "30px Arial";
-    this.ctx.fillStyle = "black";
+
+    this.ctx.font = "Bold 40px Comic Sans MS";
+    this.ctx.fillStyle = "darkblue";
+    this.ctx.textAlign = "center";
     this.ctx.fillText(
       "Game Over",
-      this.ctx.canvas.width / 2 - 70,
-      this.ctx.canvas.height / 2
+      this.ctx.canvas.width / 2, // Centro horizontal
+      100
     );
 
+    this.ctx.font = "20px Comic Sans MS";
+    this.ctx.fillStyle = "darkblue";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText("Puntuaciones:", this.ctx.canvas.width / 2, 200);
+
+    this.score.forEach((entry, index) => {
+      const yPosition = 230 + index * 30; // Ajusta el espacio vertical entre puntajes
+      this.ctx.fillText(
+        `Fecha: ${entry.fecha} - Nivel: ${entry.nivel}`,
+        this.ctx.canvas.width / 2,
+        yPosition
+      );
+    });
+
     // Indica que el juego ha terminado
-    this.live = 7;
     this.started = false;
     this.isGameOver = true;
   }
@@ -256,5 +273,28 @@ class Game {
     this.started = false;
     clearInterval(this.interval);
     this.interval = null;
+  }
+
+  addScore() {
+    const hoy = new Date().toLocaleDateString(); // fecha de hoy
+    this.score.sort((a, b) => b.nivel - a.nivel); //ordeno el score de mayor a menor nivel
+
+    // Agrega el puntaje solo si el nivel actual es mayor o igual al más alto o si la lista está vacía
+    if (this.score.length === 0 || this.level >= this.score[0].nivel) {
+      this.score.unshift({ fecha: hoy, nivel: this.level });
+      this.score.pop();
+    }
+
+    // Guarda el array actualizado en localStorage
+    localStorage.setItem("scores", JSON.stringify(this.score));
+  }
+
+  getScore() {
+    // Cargar desde localStorage solo si existe
+    const savedScores = localStorage.getItem("scores");
+    this.score = savedScores ? JSON.parse(savedScores) : []; // Inicia vacío si no hay guardado
+    this.score.sort((a, b) => b.nivel - a.nivel); // Ordena los puntajes de mayor a menor nivel
+
+    console.log(this.score);
   }
 }

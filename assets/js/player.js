@@ -65,9 +65,9 @@ class Player {
     this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
   }
 
-  draw2() {
+  draw2(el) {
     //dibuja explosión
-    this.ctx.drawImage(this.img2, this.x, this.y, this.w * 2, this.h * 2);
+    this.ctx.drawImage(this.img2, this.x, el.y - this.h, this.w * 2, this.h * 2);
   }
 
   onKeyDown(code) {
