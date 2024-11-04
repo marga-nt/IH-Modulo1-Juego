@@ -284,7 +284,9 @@ class Game {
     // Agrega el puntaje solo si el nivel actual es mayor o igual al más alto o si la lista está vacía
     if (this.score.length === 0 || this.level >= this.score[0].nivel) {
       this.score.unshift({ fecha: hoy, nivel: this.level });
-      this.score.pop();
+      if (this.score.length >3) {
+        this.score.pop();
+      }
     }
 
     // Guarda el array actualizado en localStorage
