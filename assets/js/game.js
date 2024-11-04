@@ -238,6 +238,8 @@ class Game {
 
     //guarda la puntuación si procede
     this.addScore();
+    this.getScore();
+
 
     // Mostrar mensaje de "Game Over"
 
